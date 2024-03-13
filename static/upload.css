@@ -1,11 +1,25 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
+body {
+    background-color: black;
+    color: white; /* Setting text color to white for better visibility */
 }
 
-body{
-    background-color: black;
+.btn-success {
+    background-color: rgb(240, 19, 30); /* Red color for the button */
+    border-color: rgb(240, 19, 30); /* Matching border color */
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent white for the form control */
+    color: white; /* Text color for the form control */
+    border-color: rgba(255, 255, 255, 0.1); /* Transparent white border */
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent white for focused state */
+    color: white; /* Text color for focused state */
+    border-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white border for focused state */
+}
+
+.form-label{
+    color: white;
 }

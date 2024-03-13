@@ -1,54 +1,48 @@
-import os
+from flask import Flask, render_template, request
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
 import numpy as np
-from PIL import Image
-import tensorflow as tf
-from flask import Flask, flash, request, redirect, url_for, render_template
-from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-# Load the trained model
-model = tf.keras.models.load_model('efficientnet_model.h5')
+# Load your trained Keras model
+model = load_model('')
 
-# Define allowed file extensions
-ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png'}
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+# Define a function to preprocess the image before feeding it to the model
+def preprocess_image(img_path):
+    img = image.load_img(img_path, target_size=(224, 224))  # Assuming your model expects input shape of (224, 224)
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
+    return img_array
 
 @app.route('/')
-def upload_form():
+def index():
     return render_template('index.html')
 
-@app.route('/upload', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        flash('No file part')
-        return redirect(request.url)
-    file = request.files['file']
-    if file.filename == '':
-        flash('No selected file')
-        return redirect(request.url)
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        filepath = os.path.join('uploads', filename)
-        file.save(filepath)
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        # Get the uploaded file
+        uploaded_file = request.files['imageFile']
+
+        # Save the uploaded file
+        uploaded_file.save('uploaded_image.jpg')
 
         # Preprocess the image
-        img = Image.open(filepath).resize((224, 224))
-        img_array = np.array(img) / 255.0
-        img_array = np.expand_dims(img_array, axis=0)
+        processed_image = preprocess_image('uploaded_image.jpg')
 
-        # Make prediction
-        prediction = model.predict(img_array)
-        predicted_class = np.argmax(prediction)
+        # Use the model to make a prediction
+        prediction = model.predict(processed_image)
+        # Assuming you have a list of classes
+        classes = ['Iron Man', 'Captain America', 'Thanos', 'Hulk', 'Black Widow', 'Spiderman']
 
-        class_names = ['class_0', 'class_1', 'class_2', 'class_3', 'class_4', 'class_5', 'class_6', 'class_7']
+        # Get the predicted class
+        predicted_class_index = np.argmax(prediction)
+        predicted_class = classes[predicted_class_index]
 
-        return render_template('upload.html', prediction=class_names[predicted_class], filename=filename)
-    else:
-        flash('Invalid file type. Please upload an image file (jpg, jpeg, png)')
-        return redirect(request.url)
+        return render_template('result.html', predicted_class=predicted_class)
 
-if __name__ == "__main__":
+    return render_template('upload.html')
+
+if __name__ == '__main__':
     app.run(debug=True)
