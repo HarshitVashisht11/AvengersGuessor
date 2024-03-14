@@ -1,17 +1,17 @@
 body {
     background-color: black;
-    color: white; /* Setting text color to white for better visibility */
+    color: white; 
 }
 
 .btn-success {
-    background-color: rgb(240, 19, 30); /* Red color for the button */
-    border-color: rgb(240, 19, 30); /* Matching border color */
+    background-color: rgb(240, 19, 30); 
+    border-color: rgb(240, 19, 30);
 }
 
 .form-control {
-    background-color: rgba(255, 255, 255, 0.1); /* Transparent white for the form control */
-    color: white; /* Text color for the form control */
-    border-color: rgba(255, 255, 255, 0.1); /* Transparent white border */
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white; 
+    border-color: rgba(255, 255, 255, 0.1); 
 }
 
 .form-control:focus {
