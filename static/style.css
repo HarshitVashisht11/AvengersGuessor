@@ -1,14 +1,72 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     background-color: black;
+    font-family: Arial, sans-serif;
+}
+
+.top-navbar {
+    background-color: black;
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.website-name {
+    color: white;
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.main {
+    position: relative;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.find-character {
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.tagline {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.custom-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #ed1d24;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.custom-btn:hover {
+    background-color: #ff4d53;
 }
 
 video {
-    background-color: black;
     position: fixed;
     top: 0;
     left: 0;
@@ -16,94 +74,4 @@ video {
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    opacity: 0.9;
 }
-
-.marvel {
-    background-color: black;
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    color: aliceblue;
-}
-
-.logo {
-    position: absolute;
-    left: 0;
-    display: flex;
-    padding-top: 20px;
-    padding-left: 10px;
-    height: 52px;
-    width: 130px;
-    margin: auto;
-}
-
-.name {
-    position: absolute;
-    display: flex;
-    left: 0;
-    right: 0;
-    padding-top: 10px;
-    padding-left: 10px;
-    justify-content: center;
-    font-size: 40px;
-    font-family: Arial, Helvetica, sans-serif;
-    font: bolder;
-}
-
-.login {
-    position: absolute;
-    display: flex;
-    right: 0;
-    padding-top: 20px;
-    padding-right: 10px;
-}
-
-.A {
-    color: WHITE;
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-}
-
-.DESC {
-    display: flex;
-    position: absolute;
-    left: 0;
-    right: 0;
-    color: white;
-    justify-content: center;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 40px;
-}
-
-.butto {
-    display: flex;
-    justify-content: center;
-}
-
-.AAA {
-    position: absolute;
-    width: 100px;
-    top: 10px;
-}
-
-main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-/* Centering the new heading */
-.find-character {
-    margin-top: 25vh;
-    text-align: center;
-    font-size: 50px; /* Adjust font size as needed */
-}
-
-#heading1{
-    color: white;
-}
-
-
